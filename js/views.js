@@ -4,14 +4,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
     this.vehicles = this.collection.vehicles;
     this.vehicleViews = [];
 
-    this.vehicles.forEach((function(v) {
-      this.vehicleViews.push(new VehicleView(v)); 
-    }).bind(this));
+    for (var i=0; i < this.vehicles.length; i++) {
+      this.vehicleViews.push(new VehicleView(this.vehicles[i])); 
+    }
 
     var startAll = (function() {
-      this.vehicles.forEach((function(v) {
-        v.start();
-      }));
+      for (var i=0; i < this.vehicles.length; i++) {
+        this.vehicles[i].start();
+      }
     }).bind(this);
 
     Object.observe(this.collection, startAll, ['start-all']);
